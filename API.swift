@@ -5,8 +5,8 @@ import AWSAppSync
 public struct CreateSettingsInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID? = nil, bio: String, incLocation: Bool, dateFmt: Int) {
-    graphQLMap = ["id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt]
+  public init(id: GraphQLID? = nil, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+    graphQLMap = ["id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt]
   }
 
   public var id: GraphQLID? {
@@ -15,6 +15,15 @@ public struct CreateSettingsInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: String {
+    get {
+      return graphQLMap["userId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
     }
   }
 
@@ -49,8 +58,17 @@ public struct CreateSettingsInput: GraphQLMapConvertible {
 public struct ModelSettingsConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(bio: ModelStringInput? = nil, incLocation: ModelBooleanInput? = nil, dateFmt: ModelIntInput? = nil, and: [ModelSettingsConditionInput?]? = nil, or: [ModelSettingsConditionInput?]? = nil, not: ModelSettingsConditionInput? = nil) {
-    graphQLMap = ["bio": bio, "incLocation": incLocation, "dateFmt": dateFmt, "and": and, "or": or, "not": not]
+  public init(userId: ModelStringInput? = nil, bio: ModelStringInput? = nil, incLocation: ModelBooleanInput? = nil, dateFmt: ModelIntInput? = nil, and: [ModelSettingsConditionInput?]? = nil, or: [ModelSettingsConditionInput?]? = nil, not: ModelSettingsConditionInput? = nil) {
+    graphQLMap = ["userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt, "and": and, "or": or, "not": not]
+  }
+
+  public var userId: ModelStringInput? {
+    get {
+      return graphQLMap["userId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
   }
 
   public var bio: ModelStringInput? {
@@ -505,8 +523,8 @@ public struct ModelIntInput: GraphQLMapConvertible {
 public struct UpdateSettingsInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, bio: String? = nil, incLocation: Bool? = nil, dateFmt: Int? = nil) {
-    graphQLMap = ["id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt]
+  public init(id: GraphQLID, userId: String? = nil, bio: String? = nil, incLocation: Bool? = nil, dateFmt: Int? = nil) {
+    graphQLMap = ["id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt]
   }
 
   public var id: GraphQLID {
@@ -515,6 +533,15 @@ public struct UpdateSettingsInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: String? {
+    get {
+      return graphQLMap["userId"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
     }
   }
 
@@ -566,8 +593,8 @@ public struct DeleteSettingsInput: GraphQLMapConvertible {
 public struct ModelSettingsFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, bio: ModelStringInput? = nil, incLocation: ModelBooleanInput? = nil, dateFmt: ModelIntInput? = nil, and: [ModelSettingsFilterInput?]? = nil, or: [ModelSettingsFilterInput?]? = nil, not: ModelSettingsFilterInput? = nil) {
-    graphQLMap = ["id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt, "and": and, "or": or, "not": not]
+  public init(id: ModelIDInput? = nil, userId: ModelStringInput? = nil, bio: ModelStringInput? = nil, incLocation: ModelBooleanInput? = nil, dateFmt: ModelIntInput? = nil, and: [ModelSettingsFilterInput?]? = nil, or: [ModelSettingsFilterInput?]? = nil, not: ModelSettingsFilterInput? = nil) {
+    graphQLMap = ["id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt, "and": and, "or": or, "not": not]
   }
 
   public var id: ModelIDInput? {
@@ -576,6 +603,15 @@ public struct ModelSettingsFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: ModelStringInput? {
+    get {
+      return graphQLMap["userId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
     }
   }
 
@@ -761,7 +797,7 @@ public struct ModelIDInput: GraphQLMapConvertible {
 
 public final class CreateSettingsMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateSettings($input: CreateSettingsInput!, $condition: ModelSettingsConditionInput) {\n  createSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "mutation CreateSettings($input: CreateSettingsInput!, $condition: ModelSettingsConditionInput) {\n  createSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public var input: CreateSettingsInput
   public var condition: ModelSettingsConditionInput?
@@ -807,6 +843,7 @@ public final class CreateSettingsMutation: GraphQLMutation {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -818,8 +855,8 @@ public final class CreateSettingsMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -837,6 +874,15 @@ public final class CreateSettingsMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -872,7 +918,7 @@ public final class CreateSettingsMutation: GraphQLMutation {
 
 public final class UpdateSettingsMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateSettings($input: UpdateSettingsInput!, $condition: ModelSettingsConditionInput) {\n  updateSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "mutation UpdateSettings($input: UpdateSettingsInput!, $condition: ModelSettingsConditionInput) {\n  updateSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public var input: UpdateSettingsInput
   public var condition: ModelSettingsConditionInput?
@@ -918,6 +964,7 @@ public final class UpdateSettingsMutation: GraphQLMutation {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -929,8 +976,8 @@ public final class UpdateSettingsMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -948,6 +995,15 @@ public final class UpdateSettingsMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -983,7 +1039,7 @@ public final class UpdateSettingsMutation: GraphQLMutation {
 
 public final class DeleteSettingsMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteSettings($input: DeleteSettingsInput!, $condition: ModelSettingsConditionInput) {\n  deleteSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "mutation DeleteSettings($input: DeleteSettingsInput!, $condition: ModelSettingsConditionInput) {\n  deleteSettings(input: $input, condition: $condition) {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public var input: DeleteSettingsInput
   public var condition: ModelSettingsConditionInput?
@@ -1029,6 +1085,7 @@ public final class DeleteSettingsMutation: GraphQLMutation {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1040,8 +1097,8 @@ public final class DeleteSettingsMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -1059,6 +1116,15 @@ public final class DeleteSettingsMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -1094,7 +1160,7 @@ public final class DeleteSettingsMutation: GraphQLMutation {
 
 public final class GetSettingsQuery: GraphQLQuery {
   public static let operationString =
-    "query GetSettings($id: ID!) {\n  getSettings(id: $id) {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "query GetSettings($id: ID!) {\n  getSettings(id: $id) {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public var id: GraphQLID
 
@@ -1138,6 +1204,7 @@ public final class GetSettingsQuery: GraphQLQuery {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1149,8 +1216,8 @@ public final class GetSettingsQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -1168,6 +1235,15 @@ public final class GetSettingsQuery: GraphQLQuery {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -1203,7 +1279,7 @@ public final class GetSettingsQuery: GraphQLQuery {
 
 public final class ListSettingssQuery: GraphQLQuery {
   public static let operationString =
-    "query ListSettingss($filter: ModelSettingsFilterInput, $limit: Int, $nextToken: String) {\n  listSettingss(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      bio\n      incLocation\n      dateFmt\n    }\n    nextToken\n  }\n}"
+    "query ListSettingss($filter: ModelSettingsFilterInput, $limit: Int, $nextToken: String) {\n  listSettingss(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      userId\n      bio\n      incLocation\n      dateFmt\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelSettingsFilterInput?
   public var limit: Int?
@@ -1297,6 +1373,7 @@ public final class ListSettingssQuery: GraphQLQuery {
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("userId", type: .nonNull(.scalar(String.self))),
           GraphQLField("bio", type: .nonNull(.scalar(String.self))),
           GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
           GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1308,8 +1385,8 @@ public final class ListSettingssQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-          self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+        public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+          self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
         }
 
         public var __typename: String {
@@ -1327,6 +1404,15 @@ public final class ListSettingssQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var userId: String {
+          get {
+            return snapshot["userId"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "userId")
           }
         }
 
@@ -1363,7 +1449,7 @@ public final class ListSettingssQuery: GraphQLQuery {
 
 public final class OnCreateSettingsSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateSettings {\n  onCreateSettings {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "subscription OnCreateSettings {\n  onCreateSettings {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public init() {
   }
@@ -1400,6 +1486,7 @@ public final class OnCreateSettingsSubscription: GraphQLSubscription {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1411,8 +1498,8 @@ public final class OnCreateSettingsSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -1430,6 +1517,15 @@ public final class OnCreateSettingsSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -1465,7 +1561,7 @@ public final class OnCreateSettingsSubscription: GraphQLSubscription {
 
 public final class OnUpdateSettingsSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateSettings {\n  onUpdateSettings {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "subscription OnUpdateSettings {\n  onUpdateSettings {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public init() {
   }
@@ -1502,6 +1598,7 @@ public final class OnUpdateSettingsSubscription: GraphQLSubscription {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1513,8 +1610,8 @@ public final class OnUpdateSettingsSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -1532,6 +1629,15 @@ public final class OnUpdateSettingsSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 
@@ -1567,7 +1673,7 @@ public final class OnUpdateSettingsSubscription: GraphQLSubscription {
 
 public final class OnDeleteSettingsSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteSettings {\n  onDeleteSettings {\n    __typename\n    id\n    bio\n    incLocation\n    dateFmt\n  }\n}"
+    "subscription OnDeleteSettings {\n  onDeleteSettings {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
 
   public init() {
   }
@@ -1604,6 +1710,7 @@ public final class OnDeleteSettingsSubscription: GraphQLSubscription {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
         GraphQLField("bio", type: .nonNull(.scalar(String.self))),
         GraphQLField("incLocation", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("dateFmt", type: .nonNull(.scalar(Int.self))),
@@ -1615,8 +1722,8 @@ public final class OnDeleteSettingsSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, bio: String, incLocation: Bool, dateFmt: Int) {
-        self.init(snapshot: ["__typename": "Settings", "id": id, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
+      public init(id: GraphQLID, userId: String, bio: String, incLocation: Bool, dateFmt: Int) {
+        self.init(snapshot: ["__typename": "Settings", "id": id, "userId": userId, "bio": bio, "incLocation": incLocation, "dateFmt": dateFmt])
       }
 
       public var __typename: String {
@@ -1634,6 +1741,15 @@ public final class OnDeleteSettingsSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
         }
       }
 

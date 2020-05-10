@@ -5,6 +5,7 @@ mutation CreateSettings(
 ) {
   createSettings(input: $input, condition: $condition) {
     id
+    userId
     bio
     incLocation
     dateFmt
@@ -16,6 +17,7 @@ mutation UpdateSettings(
 ) {
   updateSettings(input: $input, condition: $condition) {
     id
+    userId
     bio
     incLocation
     dateFmt
@@ -27,6 +29,7 @@ mutation DeleteSettings(
 ) {
   deleteSettings(input: $input, condition: $condition) {
     id
+    userId
     bio
     incLocation
     dateFmt

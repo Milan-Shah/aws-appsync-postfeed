@@ -1,5 +1,6 @@
 type Settings @model {
   id: ID!
+  userId: String!  
   bio: String!
   incLocation: Boolean!
   dateFmt: Int!

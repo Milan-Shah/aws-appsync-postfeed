@@ -153,7 +153,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
         if settings.id == "" {
             
             // Store
-            let input = CreateSettingsInput(id: UUID().uuidString, bio: settings.bio, incLocation: settings.includeLocation, dateFmt: settings.dateFormat.rawValue)
+            let input = CreateSettingsInput(id: UUID().uuidString, userId: AWSMobileClient.default().identityId ?? "", bio: settings.bio, incLocation: settings.includeLocation, dateFmt: settings.dateFormat.rawValue)
             let mutation = CreateSettingsMutation(input: input)
             appSyncClient?.perform(mutation: mutation) { (result, error) in
                 guard error == nil else { return }
@@ -174,21 +174,37 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     }
     
     func loadSettings() {
-        theSettings.bio = UserDefaults.standard.string(forKey: SettingsKeys.bio.rawValue) ?? ""
-        theSettings.includeLocation = UserDefaults.standard.bool(forKey: SettingsKeys.includeLocation.rawValue)
-        theSettings.dateFormat = PostDateFormatStyle.init(rawValue: UserDefaults.standard.integer(forKey: SettingsKeys.dateFormat.rawValue)) ?? .medium
+
+        guard let userId = AWSMobileClient.default().identityId else { return }
+        let q = ListSettingssQuery()
+        let userIdFilterInput = ModelStringInput(eq: userId)
+        let userIDFilter = ModelSettingsFilterInput(userId: userIdFilterInput)
+        q.filter = userIDFilter
         
-        if CLLocationManager.locationServicesEnabled() {
-            if self.theSettings.includeLocation == true {
-                self.locMgr = CLLocationManager()
-                self.locMgr?.delegate = self
-                self.locMgr?.requestWhenInUseAuthorization()
-                self.locMgr?.startUpdatingLocation()
+        appSyncClient?.fetch(query: q, cachePolicy: .fetchIgnoringCacheData) { (result, error) in
+            
+            guard error == nil else { return }
+            guard let items = result?.data?.listSettingss?.items, items.count > 0 else { return }
+            guard let settingsFromServer = items[0] else { return }
+            
+            self.theSettings.id = settingsFromServer.id
+            self.theSettings.bio = settingsFromServer.bio
+            self.theSettings.includeLocation = settingsFromServer.incLocation
+            self.theSettings.dateFormat = PostDateFormatStyle(rawValue: settingsFromServer.dateFmt) ?? PostDateFormatStyle.short
+            
+            if CLLocationManager.locationServicesEnabled() {
+                if self.theSettings.includeLocation == true {
+                    self.locMgr = CLLocationManager()
+                    self.locMgr?.delegate = self
+                    self.locMgr?.requestWhenInUseAuthorization()
+                    self.locMgr?.startUpdatingLocation()
+                }
+                else {
+                    self.locMgr?.stopUpdatingLocation() // if off
+                    self.locationTimer?.invalidate()
+                }
             }
-            else {
-                self.locMgr?.stopUpdatingLocation() // if off
-                self.locationTimer?.invalidate()
-            }
+            
         }
         
         // not the first time

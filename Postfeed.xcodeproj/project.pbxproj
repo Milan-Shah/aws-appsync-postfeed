@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		136C436E246850C500630E51 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 136C436D246850C500630E51 /* awsconfiguration.json */; };
-		136C437324685A1D00630E51 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C437224685A1D00630E51 /* API.swift */; };
+		136C43752468669600630E51 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136C43742468669500630E51 /* API.swift */; };
 		13B62B02246831F9004ACD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B62B01246831F9004ACD82 /* AppDelegate.swift */; };
 		13B62B04246831F9004ACD82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B62B03246831F9004ACD82 /* SceneDelegate.swift */; };
 		13B62B06246831F9004ACD82 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B62B05246831F9004ACD82 /* FeedTableViewController.swift */; };
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		136C436D246850C500630E51 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = awsconfiguration.json; path = ../../awsconfiguration.json; sourceTree = "<group>"; };
-		136C437224685A1D00630E51 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		136C43742468669500630E51 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		13B62AFE246831F9004ACD82 /* Postfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Postfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B62B01246831F9004ACD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13B62B03246831F9004ACD82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		136C437124685A0D00630E51 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				136C437224685A1D00630E51 /* API.swift */,
+				136C43742468669500630E51 /* API.swift */,
 				136C436D246850C500630E51 /* awsconfiguration.json */,
 			);
 			path = Services;
@@ -380,7 +380,7 @@
 				13B62B06246831F9004ACD82 /* FeedTableViewController.swift in Sources */,
 				13B62B02246831F9004ACD82 /* AppDelegate.swift in Sources */,
 				13B62B2B24683671004ACD82 /* MapViewController.swift in Sources */,
-				136C437324685A1D00630E51 /* API.swift in Sources */,
+				136C43752468669600630E51 /* API.swift in Sources */,
 				13B62B04246831F9004ACD82 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
