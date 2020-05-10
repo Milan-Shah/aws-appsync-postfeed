@@ -758,6 +758,174 @@ public struct DeletePostInput: GraphQLMapConvertible {
   }
 }
 
+public struct CreateFeedPostInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+    graphQLMap = ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt]
+  }
+
+  public var id: GraphQLID {
+    get {
+      return graphQLMap["id"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: String {
+    get {
+      return graphQLMap["userId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
+  }
+
+  public var userName: String {
+    get {
+      return graphQLMap["userName"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userName")
+    }
+  }
+
+  public var thought: String {
+    get {
+      return graphQLMap["thought"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "thought")
+    }
+  }
+
+  public var lat: Double {
+    get {
+      return graphQLMap["lat"] as! Double
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lat")
+    }
+  }
+
+  public var lng: Double {
+    get {
+      return graphQLMap["lng"] as! Double
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lng")
+    }
+  }
+
+  public var createdAt: Double {
+    get {
+      return graphQLMap["createdAt"] as! Double
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "createdAt")
+    }
+  }
+}
+
+public struct UpdateFeedPostInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(id: GraphQLID, userId: String, userName: String? = nil, thought: String? = nil, lat: Double? = nil, lng: Double? = nil, createdAt: Double? = nil) {
+    graphQLMap = ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt]
+  }
+
+  public var id: GraphQLID {
+    get {
+      return graphQLMap["id"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: String {
+    get {
+      return graphQLMap["userId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
+  }
+
+  public var userName: String? {
+    get {
+      return graphQLMap["userName"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userName")
+    }
+  }
+
+  public var thought: String? {
+    get {
+      return graphQLMap["thought"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "thought")
+    }
+  }
+
+  public var lat: Double? {
+    get {
+      return graphQLMap["lat"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lat")
+    }
+  }
+
+  public var lng: Double? {
+    get {
+      return graphQLMap["lng"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lng")
+    }
+  }
+
+  public var createdAt: Double? {
+    get {
+      return graphQLMap["createdAt"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "createdAt")
+    }
+  }
+}
+
+public struct DeleteFeedPostInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(id: GraphQLID, userId: String) {
+    graphQLMap = ["id": id, "userId": userId]
+  }
+
+  public var id: GraphQLID {
+    get {
+      return graphQLMap["id"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: String {
+    get {
+      return graphQLMap["userId"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
+  }
+}
+
 public struct ModelSettingsFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -1315,6 +1483,77 @@ public struct TableFloatFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "between")
+    }
+  }
+}
+
+public struct TableFeedPostFilterInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(id: TableIDFilterInput? = nil, userId: TableStringFilterInput? = nil, userName: TableStringFilterInput? = nil, thought: TableStringFilterInput? = nil, lat: TableFloatFilterInput? = nil, lng: TableFloatFilterInput? = nil, createdAt: TableFloatFilterInput? = nil) {
+    graphQLMap = ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt]
+  }
+
+  public var id: TableIDFilterInput? {
+    get {
+      return graphQLMap["id"] as! TableIDFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var userId: TableStringFilterInput? {
+    get {
+      return graphQLMap["userId"] as! TableStringFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userId")
+    }
+  }
+
+  public var userName: TableStringFilterInput? {
+    get {
+      return graphQLMap["userName"] as! TableStringFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "userName")
+    }
+  }
+
+  public var thought: TableStringFilterInput? {
+    get {
+      return graphQLMap["thought"] as! TableStringFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "thought")
+    }
+  }
+
+  public var lat: TableFloatFilterInput? {
+    get {
+      return graphQLMap["lat"] as! TableFloatFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lat")
+    }
+  }
+
+  public var lng: TableFloatFilterInput? {
+    get {
+      return graphQLMap["lng"] as! TableFloatFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lng")
+    }
+  }
+
+  public var createdAt: TableFloatFilterInput? {
+    get {
+      return graphQLMap["createdAt"] as! TableFloatFilterInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "createdAt")
     }
   }
 }
@@ -2099,6 +2338,423 @@ public final class DeletePostMutation: GraphQLMutation {
   }
 }
 
+public final class CreateFeedPostMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation CreateFeedPost($input: CreateFeedPostInput!) {\n  createFeedPost(input: $input) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var input: CreateFeedPostInput
+
+  public init(input: CreateFeedPostInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("createFeedPost", arguments: ["input": GraphQLVariable("input")], type: .object(CreateFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(createFeedPost: CreateFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Mutation", "createFeedPost": createFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var createFeedPost: CreateFeedPost? {
+      get {
+        return (snapshot["createFeedPost"] as? Snapshot).flatMap { CreateFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "createFeedPost")
+      }
+    }
+
+    public struct CreateFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class UpdateFeedPostMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation UpdateFeedPost($input: UpdateFeedPostInput!) {\n  updateFeedPost(input: $input) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var input: UpdateFeedPostInput
+
+  public init(input: UpdateFeedPostInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updateFeedPost", arguments: ["input": GraphQLVariable("input")], type: .object(UpdateFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(updateFeedPost: UpdateFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Mutation", "updateFeedPost": updateFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var updateFeedPost: UpdateFeedPost? {
+      get {
+        return (snapshot["updateFeedPost"] as? Snapshot).flatMap { UpdateFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "updateFeedPost")
+      }
+    }
+
+    public struct UpdateFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteFeedPostMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation DeleteFeedPost($input: DeleteFeedPostInput!) {\n  deleteFeedPost(input: $input) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var input: DeleteFeedPostInput
+
+  public init(input: DeleteFeedPostInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteFeedPost", arguments: ["input": GraphQLVariable("input")], type: .object(DeleteFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(deleteFeedPost: DeleteFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Mutation", "deleteFeedPost": deleteFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var deleteFeedPost: DeleteFeedPost? {
+      get {
+        return (snapshot["deleteFeedPost"] as? Snapshot).flatMap { DeleteFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "deleteFeedPost")
+      }
+    }
+
+    public struct DeleteFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
 public final class GetSettingsQuery: GraphQLQuery {
   public static let operationString =
     "query GetSettings($id: ID!) {\n  getSettings(id: $id) {\n    __typename\n    id\n    userId\n    bio\n    incLocation\n    dateFmt\n  }\n}"
@@ -2641,6 +3297,337 @@ public final class ListPostsQuery: GraphQLQuery {
 
         public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
           self.init(snapshot: ["__typename": "Post", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return snapshot["id"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var userId: String {
+          get {
+            return snapshot["userId"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "userId")
+          }
+        }
+
+        public var userName: String {
+          get {
+            return snapshot["userName"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "userName")
+          }
+        }
+
+        public var thought: String {
+          get {
+            return snapshot["thought"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "thought")
+          }
+        }
+
+        public var lat: Double {
+          get {
+            return snapshot["lat"]! as! Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "lat")
+          }
+        }
+
+        public var lng: Double {
+          get {
+            return snapshot["lng"]! as! Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "lng")
+          }
+        }
+
+        public var createdAt: Double {
+          get {
+            return snapshot["createdAt"]! as! Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "createdAt")
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class GetFeedPostQuery: GraphQLQuery {
+  public static let operationString =
+    "query GetFeedPost($id: ID!, $userId: String!) {\n  getFeedPost(id: $id, userId: $userId) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var id: GraphQLID
+  public var userId: String
+
+  public init(id: GraphQLID, userId: String) {
+    self.id = id
+    self.userId = userId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "userId": userId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId")], type: .object(GetFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(getFeedPost: GetFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Query", "getFeedPost": getFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var getFeedPost: GetFeedPost? {
+      get {
+        return (snapshot["getFeedPost"] as? Snapshot).flatMap { GetFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "getFeedPost")
+      }
+    }
+
+    public struct GetFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class ListFeedPostsQuery: GraphQLQuery {
+  public static let operationString =
+    "query ListFeedPosts($filter: TableFeedPostFilterInput, $limit: Int, $nextToken: String) {\n  listFeedPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      userId\n      userName\n      thought\n      lat\n      lng\n      createdAt\n    }\n    nextToken\n  }\n}"
+
+  public var filter: TableFeedPostFilterInput?
+  public var limit: Int?
+  public var nextToken: String?
+
+  public init(filter: TableFeedPostFilterInput? = nil, limit: Int? = nil, nextToken: String? = nil) {
+    self.filter = filter
+    self.limit = limit
+    self.nextToken = nextToken
+  }
+
+  public var variables: GraphQLMap? {
+    return ["filter": filter, "limit": limit, "nextToken": nextToken]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("listFeedPosts", arguments: ["filter": GraphQLVariable("filter"), "limit": GraphQLVariable("limit"), "nextToken": GraphQLVariable("nextToken")], type: .object(ListFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(listFeedPosts: ListFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Query", "listFeedPosts": listFeedPosts.flatMap { $0.snapshot }])
+    }
+
+    public var listFeedPosts: ListFeedPost? {
+      get {
+        return (snapshot["listFeedPosts"] as? Snapshot).flatMap { ListFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "listFeedPosts")
+      }
+    }
+
+    public struct ListFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPostConnection"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("items", type: .list(.object(Item.selections))),
+        GraphQLField("nextToken", type: .scalar(String.self)),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(items: [Item?]? = nil, nextToken: String? = nil) {
+        self.init(snapshot: ["__typename": "FeedPostConnection", "items": items.flatMap { $0.map { $0.flatMap { $0.snapshot } } }, "nextToken": nextToken])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var items: [Item?]? {
+        get {
+          return (snapshot["items"] as? [Snapshot?]).flatMap { $0.map { $0.flatMap { Item(snapshot: $0) } } }
+        }
+        set {
+          snapshot.updateValue(newValue.flatMap { $0.map { $0.flatMap { $0.snapshot } } }, forKey: "items")
+        }
+      }
+
+      public var nextToken: String? {
+        get {
+          return snapshot["nextToken"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "nextToken")
+        }
+      }
+
+      public struct Item: GraphQLSelectionSet {
+        public static let possibleTypes = ["FeedPost"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+          GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+          GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+          GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+          self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
         }
 
         public var __typename: String {
@@ -3419,6 +4406,447 @@ public final class OnDeletePostSubscription: GraphQLSubscription {
 
       public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
         self.init(snapshot: ["__typename": "Post", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class OnCreateFeedPostSubscription: GraphQLSubscription {
+  public static let operationString =
+    "subscription OnCreateFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onCreateFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var id: GraphQLID?
+  public var userId: String?
+  public var userName: String?
+  public var thought: String?
+  public var lat: Double?
+
+  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
+    self.id = id
+    self.userId = userId
+    self.userName = userName
+    self.thought = thought
+    self.lat = lat
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Subscription"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("onCreateFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnCreateFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(onCreateFeedPost: OnCreateFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Subscription", "onCreateFeedPost": onCreateFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var onCreateFeedPost: OnCreateFeedPost? {
+      get {
+        return (snapshot["onCreateFeedPost"] as? Snapshot).flatMap { OnCreateFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "onCreateFeedPost")
+      }
+    }
+
+    public struct OnCreateFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class OnUpdateFeedPostSubscription: GraphQLSubscription {
+  public static let operationString =
+    "subscription OnUpdateFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onUpdateFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var id: GraphQLID?
+  public var userId: String?
+  public var userName: String?
+  public var thought: String?
+  public var lat: Double?
+
+  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
+    self.id = id
+    self.userId = userId
+    self.userName = userName
+    self.thought = thought
+    self.lat = lat
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Subscription"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("onUpdateFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnUpdateFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(onUpdateFeedPost: OnUpdateFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Subscription", "onUpdateFeedPost": onUpdateFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var onUpdateFeedPost: OnUpdateFeedPost? {
+      get {
+        return (snapshot["onUpdateFeedPost"] as? Snapshot).flatMap { OnUpdateFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "onUpdateFeedPost")
+      }
+    }
+
+    public struct OnUpdateFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var userId: String {
+        get {
+          return snapshot["userId"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+
+      public var userName: String {
+        get {
+          return snapshot["userName"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userName")
+        }
+      }
+
+      public var thought: String {
+        get {
+          return snapshot["thought"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "thought")
+        }
+      }
+
+      public var lat: Double {
+        get {
+          return snapshot["lat"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lat")
+        }
+      }
+
+      public var lng: Double {
+        get {
+          return snapshot["lng"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lng")
+        }
+      }
+
+      public var createdAt: Double {
+        get {
+          return snapshot["createdAt"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+    }
+  }
+}
+
+public final class OnDeleteFeedPostSubscription: GraphQLSubscription {
+  public static let operationString =
+    "subscription OnDeleteFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onDeleteFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+
+  public var id: GraphQLID?
+  public var userId: String?
+  public var userName: String?
+  public var thought: String?
+  public var lat: Double?
+
+  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
+    self.id = id
+    self.userId = userId
+    self.userName = userName
+    self.thought = thought
+    self.lat = lat
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Subscription"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("onDeleteFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnDeleteFeedPost.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(onDeleteFeedPost: OnDeleteFeedPost? = nil) {
+      self.init(snapshot: ["__typename": "Subscription", "onDeleteFeedPost": onDeleteFeedPost.flatMap { $0.snapshot }])
+    }
+
+    public var onDeleteFeedPost: OnDeleteFeedPost? {
+      get {
+        return (snapshot["onDeleteFeedPost"] as? Snapshot).flatMap { OnDeleteFeedPost(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "onDeleteFeedPost")
+      }
+    }
+
+    public struct OnDeleteFeedPost: GraphQLSelectionSet {
+      public static let possibleTypes = ["FeedPost"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("thought", type: .nonNull(.scalar(String.self))),
+        GraphQLField("lat", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("lng", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("createdAt", type: .nonNull(.scalar(Double.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(id: GraphQLID, userId: String, userName: String, thought: String, lat: Double, lng: Double, createdAt: Double) {
+        self.init(snapshot: ["__typename": "FeedPost", "id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat, "lng": lng, "createdAt": createdAt])
       }
 
       public var __typename: String {

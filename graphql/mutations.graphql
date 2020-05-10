@@ -68,3 +68,36 @@ mutation DeletePost($input: DeletePostInput!) {
     createdAt
   }
 }
+mutation CreateFeedPost($input: CreateFeedPostInput!) {
+  createFeedPost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+mutation UpdateFeedPost($input: UpdateFeedPostInput!) {
+  updateFeedPost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+mutation DeleteFeedPost($input: DeleteFeedPostInput!) {
+  deleteFeedPost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}

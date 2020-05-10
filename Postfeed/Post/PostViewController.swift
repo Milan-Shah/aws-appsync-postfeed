@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSMobileClient
 
 protocol ThoughtPoster {
     func postThought(post : Post)
@@ -24,7 +25,12 @@ class PostViewController: UIViewController {
         
         // if we have a Post we're viewing so remove the Post button
         if post != nil {
-            self.navigationItem.rightBarButtonItem = nil
+            
+            // Blocking users from editing post created by other users!
+            if post?.userId != AWSMobileClient.default().identityId ?? "" {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+            
             textview.text = post?.thought
         }
     }

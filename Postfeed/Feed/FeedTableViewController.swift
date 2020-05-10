@@ -12,6 +12,8 @@ import AWSMobileClient
 import AWSAppSync
 
 class Post {
+    var id = ""
+    var userId = ""
     var userName = ""
     var thought = ""
     var lat = 0.0
@@ -78,6 +80,9 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
         
         if AWSMobileClient.default().isSignedIn {
             
+            // Fetch Posts
+            fetchPosts()
+            
         } else {
             
             guard let navigationController = self.navigationController else { return }
@@ -90,31 +95,81 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
                 
                 guard let state = userState else { return }
                 print("\(state.rawValue)")
+                self.fetchPosts()
             }
         }
     }
     
     // MARK: - Post Thought Post
     func postThought(post: Post) {
-        posts.append(post)
-        tableView.reloadData()
+        
+        if post.id.isEmpty {
+            
+            // Create
+            let userId = AWSMobileClient.default().identityId ?? ""
+            let userName = AWSMobileClient.default().username ?? ""
+            
+            post.id = UUID().uuidString
+            post.userId = userId
+            let input = CreateFeedPostInput(id: post.id, userId: userId, userName: userName, thought: post.thought, lat: post.lat, lng: post.lng, createdAt: Date().timeIntervalSince1970)
+            let mut = CreateFeedPostMutation(input: input)
+            appSyncClient?.perform(mutation: mut) { (result, error) in
+                guard error == nil else { return }
+                self.posts.append(post)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        } else {
+            
+            // Update
+            let userId = AWSMobileClient.default().identityId ?? ""
+            let userName = AWSMobileClient.default().username ?? ""
+            let input = UpdateFeedPostInput(id: post.id, userId: userId, userName: userName, thought: post.thought, lat: post.lat, lng: post.lng, createdAt: Date().timeIntervalSince1970)
+            let mut = UpdateFeedPostMutation(input: input)
+            appSyncClient?.perform(mutation: mut) { (result, error) in
+                guard error == nil else { return }
+                self.posts.append(post)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
     }
 
     // MARK: - Fetch Thought Posts
     func fetchPosts() {
         
-        // TODO: fetch posts
+        guard AWSMobileClient.default().isSignedIn else { return }
         
-        let post = Post()
-        post.createdAt = Date().timeIntervalSince1970
-        post.lat = (theSettings.includeLocation) ? 33.0 : 0.0
-        post.lng = (theSettings.includeLocation) ? -97.0 : 0.0
-        post.thought = "Here's a thought..."
-        post.userName = "brainofbear"
-        
-        posts.append(post)
-        tableView.reloadData()
-        self.refreshControl?.endRefreshing()
+        let q = ListFeedPostsQuery()
+        appSyncClient?.fetch(query: q, cachePolicy: .returnCacheDataAndFetch) { (result, error) in
+            
+            guard error == nil else { return }
+            guard let postFromServer = result?.data?.listFeedPosts?.items else { return }
+            guard postFromServer.count > 0 else { return }
+            
+            // TODO: convert into Codable protocol for JSONDecoding ;)
+            postFromServer.forEach { (item) in
+                let newPost = Post()
+                newPost.createdAt = item?.createdAt ?? 0.0
+                newPost.id = item?.id ?? ""
+                newPost.lat = item?.lat ?? 0.0
+                newPost.lng = item?.lng ?? 0.0
+                newPost.thought = item?.thought ?? ""
+                newPost.userId = item?.userId ?? ""
+                newPost.userName = item?.userName ?? ""
+                self.posts.append(newPost)
+            }
+            
+            DispatchQueue.main.async {
+                if self.posts.count > 0 {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     // MARK: - Table view data source

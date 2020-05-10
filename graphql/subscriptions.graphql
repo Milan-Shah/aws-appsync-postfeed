@@ -95,3 +95,72 @@ subscription OnDeletePost(
     createdAt
   }
 }
+subscription OnCreateFeedPost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onCreateFeedPost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+subscription OnUpdateFeedPost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onUpdateFeedPost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+subscription OnDeleteFeedPost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onDeleteFeedPost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}

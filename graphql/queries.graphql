@@ -53,3 +53,32 @@ query ListPosts(
     nextToken
   }
 }
+query GetFeedPost($id: ID!, $userId: String!) {
+  getFeedPost(id: $id, userId: $userId) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+query ListFeedPosts(
+  $filter: TableFeedPostFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFeedPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userId
+      userName
+      thought
+      lat
+      lng
+      createdAt
+    }
+    nextToken
+  }
+}
