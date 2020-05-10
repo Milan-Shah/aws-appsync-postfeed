@@ -150,6 +150,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
             guard error == nil else { return }
             guard let postFromServer = result?.data?.listFeedPosts?.items else { return }
             guard postFromServer.count > 0 else { return }
+            self.posts.removeAll()
             
             // TODO: convert into Codable protocol for JSONDecoding ;)
             postFromServer.forEach { (item) in
@@ -196,10 +197,26 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            deletePost(at: indexPath.row)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+    }
+    
+    func deletePost(at index: Int) {
+        
+        let post = posts[index]
+        guard post.userId == AWSMobileClient.default().identityId else { return }
+        posts.remove(at: index)
+        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        
+        let input = DeleteFeedPostInput(id: post.id, userId: post.userId)
+        let mut = DeleteFeedPostMutation(input: input)
+        appSyncClient?.perform(mutation: mut) { (result, error) in
+            guard error != nil else { return }
+            print(result)
+        }
+        
     }
 
     // MARK: - Settings
