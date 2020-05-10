@@ -8,9 +8,20 @@
 
 import UIKit
 import AWSMobileClient
+import AWSAppSync
+
+class MyAuthProvider: AWSCognitoUserPoolsAuthProviderAsync {
+    func getLatestAuthToken(_ callback: @escaping (String?, Error?) -> Void) {
+        AWSMobileClient.default().getTokens { (tokens, error) in
+            callback(tokens?.idToken?.tokenString, error)
+        }
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var appSyncClient: AWSAppSyncClient?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,9 +34,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        
+        do {
+
+            let cacheConfiguration = try AWSAppSyncCacheConfiguration()
+
+            let appSyncServiceConfig = try AWSAppSyncServiceConfig()
+            let appSyncConfig = try AWSAppSyncClientConfiguration(
+                    appSyncServiceConfig: appSyncServiceConfig,
+                    userPoolsAuthProvider: MyAuthProvider(),
+                    cacheConfiguration: cacheConfiguration)
+            
+            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
+
+        } catch {
+            print("Error initializing appsync client. \(error)")
+        }
+        
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

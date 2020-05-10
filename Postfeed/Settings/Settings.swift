@@ -24,12 +24,14 @@ enum PostDateFormatStyle : Int {
 }
 
 enum SettingsKeys : String {
+    case id = "id"
     case bio = "bio"
     case includeLocation = "IncludeLocation"
     case dateFormat = "DateFormat"
 }
 
 class Settings : DateFormatForSettings {
+    var id = ""
     var bio = ""
     var includeLocation = false
     var dateFormat = PostDateFormatStyle.medium

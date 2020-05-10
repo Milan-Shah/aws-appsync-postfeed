@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import AWSMobileClient
+import AWSAppSync
 
 class Post {
     var userName = ""
@@ -57,9 +58,12 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     
     var posts = [Post]()
     var mapPost : Post?
+    
+    var appSyncClient: AWSAppSyncClient?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        appSyncClient = (UIApplication.shared.delegate as! AppDelegate).appSyncClient
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -145,9 +149,28 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
 
     // MARK: - Settings
     func saveSettings(settings: Settings) {
-        UserDefaults.standard.set(settings.bio, forKey: SettingsKeys.bio.rawValue)
-        UserDefaults.standard.set(settings.includeLocation, forKey: SettingsKeys.includeLocation.rawValue)
-        UserDefaults.standard.set(settings.dateFormat.rawValue, forKey: SettingsKeys.dateFormat.rawValue)
+        
+        if settings.id == "" {
+            
+            // Store
+            let input = CreateSettingsInput(id: UUID().uuidString, bio: settings.bio, incLocation: settings.includeLocation, dateFmt: settings.dateFormat.rawValue)
+            let mutation = CreateSettingsMutation(input: input)
+            appSyncClient?.perform(mutation: mutation) { (result, error) in
+                guard error == nil else { return }
+                print(result ?? "Result came in empty!")
+            }
+            
+        } else {
+            
+            // Update
+            let input = UpdateSettingsInput(id: UUID().uuidString, bio: settings.bio, incLocation: settings.includeLocation, dateFmt: settings.dateFormat.rawValue)
+            let mutation = UpdateSettingsMutation(input: input)
+            appSyncClient?.perform(mutation: mutation) { (result, error) in
+                guard error == nil else { return }
+                print(result ?? "Result came in empty!")
+            }
+        }
+        
     }
     
     func loadSettings() {

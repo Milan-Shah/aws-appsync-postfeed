@@ -9,7 +9,7 @@ target 'Postfeed' do
   pod 'AWSMobileClient'
   pod 'AWSUserPoolsSignIn'
   pod 'AWSAuthUI'
-
+  pod 'AWSAppSync'
 
   target 'PostfeedTests' do
     inherit! :search_paths
