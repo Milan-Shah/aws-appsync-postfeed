@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="226" y="134"/>
         </scene>
-        <!--Thoughts-->
+        <!--Feed-->
         <scene sceneID="pe0-Ab-u87">
             <objects>
                 <tableViewController id="QRQ-Om-UrF" customClass="FeedTableViewController" customModule="Postfeed" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellTPost" rowHeight="66" id="k37-VI-75g" customClass="PostCell" customModule="Postfeed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postcell" rowHeight="66" id="k37-VI-75g" customClass="PostCell" customModule="Postfeed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k37-VI-75g" id="gAY-JC-4Fv">
@@ -72,6 +72,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="postcell"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="NNv-VH-Mub" id="1yA-L0-XKR"/>
                                     <outlet property="mapButton" destination="5Ry-jN-Nxy" id="Typ-QT-JPc"/>
@@ -86,7 +87,7 @@
                             <outlet property="delegate" destination="QRQ-Om-UrF" id="15e-36-Sfx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Thoughts" id="QwQ-IT-dY4">
+                    <navigationItem key="navigationItem" title="Feed" id="QwQ-IT-dY4">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="dbY-3m-T8B">
                             <connections>
                                 <segue destination="EjS-Y6-Qgo" kind="presentation" identifier="segSettings" id="ekB-bb-RBY"/>
@@ -104,7 +105,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Refreshing...">
                                 <attributes>
-                                    <font key="NSFont" metaFont="menu" size="11"/>
+                                    <font key="NSFont" metaFont="message" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
