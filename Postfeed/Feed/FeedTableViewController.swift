@@ -382,7 +382,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
                         
                         data.listFeedPosts?.items?.append(postToAdd)
                         DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                            self.fetchPosts()
                         }
                     })
                     
@@ -404,7 +404,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
             
             onUpdateWatcher = try appSyncClient?.subscribe(subscription: OnUpdateFeedPostSubscription(), resultHandler: { (result, trans, error) in
                 
-                guard error != nil else { return }
+                guard error == nil else { return }
                 DispatchQueue.main.async {
                     self.fetchPosts()
                 }
