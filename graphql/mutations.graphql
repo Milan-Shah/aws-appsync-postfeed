@@ -35,3 +35,36 @@ mutation DeleteSettings(
     dateFmt
   }
 }
+mutation CreatePost($input: CreatePostInput!) {
+  createPost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+mutation UpdatePost($input: UpdatePostInput!) {
+  updatePost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+mutation DeletePost($input: DeletePostInput!) {
+  deletePost(input: $input) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}

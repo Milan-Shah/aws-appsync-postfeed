@@ -26,3 +26,72 @@ subscription OnDeleteSettings {
     dateFmt
   }
 }
+subscription OnCreatePost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onCreatePost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+subscription OnUpdatePost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onUpdatePost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
+subscription OnDeletePost(
+  $id: ID
+  $userId: String
+  $userName: String
+  $thought: String
+  $lat: Float
+) {
+  onDeletePost(
+    id: $id
+    userId: $userId
+    userName: $userName
+    thought: $thought
+    lat: $lat
+  ) {
+    id
+    userId
+    userName
+    thought
+    lat
+    lng
+    createdAt
+  }
+}
