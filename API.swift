@@ -4044,31 +4044,16 @@ public final class OnDeleteSettingsSubscription: GraphQLSubscription {
 
 public final class OnCreatePostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreatePost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onCreatePost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnCreatePost {\n  onCreatePost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onCreatePost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnCreatePost.selections)),
+      GraphQLField("onCreatePost", type: .object(OnCreatePost.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -4191,31 +4176,16 @@ public final class OnCreatePostSubscription: GraphQLSubscription {
 
 public final class OnUpdatePostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdatePost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onUpdatePost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnUpdatePost {\n  onUpdatePost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onUpdatePost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnUpdatePost.selections)),
+      GraphQLField("onUpdatePost", type: .object(OnUpdatePost.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -4338,31 +4308,16 @@ public final class OnUpdatePostSubscription: GraphQLSubscription {
 
 public final class OnDeletePostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeletePost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onDeletePost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnDeletePost {\n  onDeletePost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onDeletePost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnDeletePost.selections)),
+      GraphQLField("onDeletePost", type: .object(OnDeletePost.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -4485,31 +4440,16 @@ public final class OnDeletePostSubscription: GraphQLSubscription {
 
 public final class OnCreateFeedPostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onCreateFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnCreateFeedPost {\n  onCreateFeedPost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onCreateFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnCreateFeedPost.selections)),
+      GraphQLField("onCreateFeedPost", type: .object(OnCreateFeedPost.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -4632,31 +4572,16 @@ public final class OnCreateFeedPostSubscription: GraphQLSubscription {
 
 public final class OnUpdateFeedPostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onUpdateFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnUpdateFeedPost {\n  onUpdateFeedPost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onUpdateFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnUpdateFeedPost.selections)),
+      GraphQLField("onUpdateFeedPost", type: .object(OnUpdateFeedPost.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -4779,31 +4704,16 @@ public final class OnUpdateFeedPostSubscription: GraphQLSubscription {
 
 public final class OnDeleteFeedPostSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteFeedPost($id: ID, $userId: String, $userName: String, $thought: String, $lat: Float) {\n  onDeleteFeedPost(id: $id, userId: $userId, userName: $userName, thought: $thought, lat: $lat) {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
+    "subscription OnDeleteFeedPost {\n  onDeleteFeedPost {\n    __typename\n    id\n    userId\n    userName\n    thought\n    lat\n    lng\n    createdAt\n  }\n}"
 
-  public var id: GraphQLID?
-  public var userId: String?
-  public var userName: String?
-  public var thought: String?
-  public var lat: Double?
-
-  public init(id: GraphQLID? = nil, userId: String? = nil, userName: String? = nil, thought: String? = nil, lat: Double? = nil) {
-    self.id = id
-    self.userId = userId
-    self.userName = userName
-    self.thought = thought
-    self.lat = lat
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id, "userId": userId, "userName": userName, "thought": thought, "lat": lat]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onDeleteFeedPost", arguments: ["id": GraphQLVariable("id"), "userId": GraphQLVariable("userId"), "userName": GraphQLVariable("userName"), "thought": GraphQLVariable("thought"), "lat": GraphQLVariable("lat")], type: .object(OnDeleteFeedPost.selections)),
+      GraphQLField("onDeleteFeedPost", type: .object(OnDeleteFeedPost.selections)),
     ]
 
     public var snapshot: Snapshot

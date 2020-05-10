@@ -26,20 +26,8 @@ subscription OnDeleteSettings {
     dateFmt
   }
 }
-subscription OnCreatePost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onCreatePost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnCreatePost {
+  onCreatePost {
     id
     userId
     userName
@@ -49,20 +37,8 @@ subscription OnCreatePost(
     createdAt
   }
 }
-subscription OnUpdatePost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onUpdatePost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnUpdatePost {
+  onUpdatePost {
     id
     userId
     userName
@@ -72,20 +48,8 @@ subscription OnUpdatePost(
     createdAt
   }
 }
-subscription OnDeletePost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onDeletePost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnDeletePost {
+  onDeletePost {
     id
     userId
     userName
@@ -95,20 +59,8 @@ subscription OnDeletePost(
     createdAt
   }
 }
-subscription OnCreateFeedPost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onCreateFeedPost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnCreateFeedPost {
+  onCreateFeedPost {
     id
     userId
     userName
@@ -118,20 +70,8 @@ subscription OnCreateFeedPost(
     createdAt
   }
 }
-subscription OnUpdateFeedPost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onUpdateFeedPost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnUpdateFeedPost {
+  onUpdateFeedPost {
     id
     userId
     userName
@@ -141,20 +81,8 @@ subscription OnUpdateFeedPost(
     createdAt
   }
 }
-subscription OnDeleteFeedPost(
-  $id: ID
-  $userId: String
-  $userName: String
-  $thought: String
-  $lat: Float
-) {
-  onDeleteFeedPost(
-    id: $id
-    userId: $userId
-    userName: $userName
-    thought: $thought
-    lat: $lat
-  ) {
+subscription OnDeleteFeedPost {
+  onDeleteFeedPost {
     id
     userId
     userName
