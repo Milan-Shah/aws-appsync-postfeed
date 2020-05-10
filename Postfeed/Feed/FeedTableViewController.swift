@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import AWSMobileClient
 
 class Post {
     var userName = ""
@@ -65,6 +66,28 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
         super.viewDidAppear(animated)
         self.loadSettings()
         self.theSettings.delegate = self
+        
+        checkSignIn()
+    }
+    
+    func checkSignIn() {
+        
+        if AWSMobileClient.default().isSignedIn {
+            
+        } else {
+            
+            guard let navigationController = self.navigationController else { return }
+            AWSMobileClient.default().showSignIn(navigationController: navigationController) { (userState, error) in
+                
+                guard error == nil else {
+                    print("AWSMobileClient ShowSign In Error")
+                    return
+                }
+                
+                guard let state = userState else { return }
+                print("\(state.rawValue)")
+            }
+        }
     }
     
     // MARK: - Post Thought Post
