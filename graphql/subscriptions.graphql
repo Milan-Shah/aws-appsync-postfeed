@@ -1,0 +1,25 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateSettings {
+  onCreateSettings {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}
+subscription OnUpdateSettings {
+  onUpdateSettings {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}
+subscription OnDeleteSettings {
+  onDeleteSettings {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}

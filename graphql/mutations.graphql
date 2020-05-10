@@ -1,0 +1,34 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateSettings(
+  $input: CreateSettingsInput!
+  $condition: ModelSettingsConditionInput
+) {
+  createSettings(input: $input, condition: $condition) {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}
+mutation UpdateSettings(
+  $input: UpdateSettingsInput!
+  $condition: ModelSettingsConditionInput
+) {
+  updateSettings(input: $input, condition: $condition) {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}
+mutation DeleteSettings(
+  $input: DeleteSettingsInput!
+  $condition: ModelSettingsConditionInput
+) {
+  deleteSettings(input: $input, condition: $condition) {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}

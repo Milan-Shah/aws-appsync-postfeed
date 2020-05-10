@@ -1,0 +1,24 @@
+# this is an auto generated file. This will be overwritten
+query GetSettings($id: ID!) {
+  getSettings(id: $id) {
+    id
+    bio
+    incLocation
+    dateFmt
+  }
+}
+query ListSettingss(
+  $filter: ModelSettingsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSettingss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      bio
+      incLocation
+      dateFmt
+    }
+    nextToken
+  }
+}
