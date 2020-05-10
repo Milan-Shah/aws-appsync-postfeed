@@ -64,6 +64,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     var appSyncClient: AWSAppSyncClient?
     var onCreateWatcher: AWSAppSyncSubscriptionWatcher<OnCreateFeedPostSubscription>?
     var onUpdateWatcher: AWSAppSyncSubscriptionWatcher<OnUpdateFeedPostSubscription>?
+    var onDeleteWatcher: AWSAppSyncSubscriptionWatcher<OnDeleteFeedPostSubscription>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -365,8 +366,9 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     func startSubscriptionForOnCreateWatcher() {
         guard onCreateWatcher == nil else { return }
         
-        // Subscribe to update watcher as well
+        // Subscribe to update and delete watcher as well
         startSubscriptionForOnUpdateWatcher()
+        startSubscriptionForOnDeleteWatcher()
         
         do {
             
@@ -403,6 +405,24 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
         do {
             
             onUpdateWatcher = try appSyncClient?.subscribe(subscription: OnUpdateFeedPostSubscription(), resultHandler: { (result, trans, error) in
+                
+                guard error == nil else { return }
+                DispatchQueue.main.async {
+                    self.fetchPosts()
+                }
+            })
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func startSubscriptionForOnDeleteWatcher() {
+        guard onDeleteWatcher == nil else { return }
+        
+        do {
+            
+            onDeleteWatcher = try appSyncClient?.subscribe(subscription: OnDeleteFeedPostSubscription(), resultHandler: { (result, trans, error) in
                 
                 guard error == nil else { return }
                 DispatchQueue.main.async {
