@@ -62,7 +62,9 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
     var mapPost : Post?
     
     var appSyncClient: AWSAppSyncClient?
-
+    var onCreateWatcher: AWSAppSyncSubscriptionWatcher<OnCreateFeedPostSubscription>?
+    var onUpdateWatcher: AWSAppSyncSubscriptionWatcher<OnUpdateFeedPostSubscription>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         appSyncClient = (UIApplication.shared.delegate as! AppDelegate).appSyncClient
@@ -82,6 +84,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
             
             // Fetch Posts
             fetchPosts()
+            startSubscriptionForOnCreateWatcher()
             
         } else {
             
@@ -96,6 +99,7 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
                 guard let state = userState else { return }
                 print("\(state.rawValue)")
                 self.fetchPosts()
+                self.startSubscriptionForOnCreateWatcher()
             }
         }
     }
@@ -357,5 +361,57 @@ class FeedTableViewController: UITableViewController, SettingsSaver, CLLocationM
         self.performSegue(withIdentifier: "segMap", sender: self)
     }
     
-
+    // MARK: - Subscription Watcher
+    func startSubscriptionForOnCreateWatcher() {
+        guard onCreateWatcher == nil else { return }
+        
+        // Subscribe to update watcher as well
+        startSubscriptionForOnUpdateWatcher()
+        
+        do {
+            
+            onCreateWatcher = try appSyncClient?.subscribe(subscription: OnCreateFeedPostSubscription(), resultHandler: { (result, trans, error) in
+                
+                guard error == nil else { return }
+                guard let result = result else { return }
+                guard let newPost = result.data?.onCreateFeedPost else { return }
+                let postToAdd = ListFeedPostsQuery.Data.ListFeedPost.Item(id: newPost.id, userId: newPost.userId, userName: newPost.userName, thought: newPost.thought, lat: newPost.lat, lng: newPost.lng, createdAt: newPost.createdAt)
+                
+                do {
+                    try trans?.update(query: ListFeedPostsQuery(), { (data: inout ListFeedPostsQuery.Data) in
+                        
+                        data.listFeedPosts?.items?.append(postToAdd)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    })
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            })
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func startSubscriptionForOnUpdateWatcher() {
+        guard onUpdateWatcher == nil else { return }
+        
+        do {
+            
+            onUpdateWatcher = try appSyncClient?.subscribe(subscription: OnUpdateFeedPostSubscription(), resultHandler: { (result, trans, error) in
+                
+                guard error != nil else { return }
+                DispatchQueue.main.async {
+                    self.fetchPosts()
+                }
+            })
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
